@@ -1,0 +1,6 @@
+@TaskGear.Api_HostAddress = http://localhost:5078
+
+GET {{TaskGear.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
