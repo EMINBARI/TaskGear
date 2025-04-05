@@ -1,6 +1,8 @@
-namespace TaskGear.Core.Model;
+using TaskGear.Core.Abstractions;
 
-public class Task 
+namespace TaskGear.Core.Models;
+
+public class Task: IEntity
 {
     public Guid Id { get; set; }
     public string Title { get; set; }
@@ -17,5 +19,7 @@ public class Task
 
     public DateTimeOffset ExpiresAt { get; set; }
     public DateTimeOffset CreatedAt { get; set; }
-    public DateTimeOffset UpdatedAt { get; set; }    
+    public DateTimeOffset UpdatedAt { get; set; }
+
+    public Task() {}
 }

@@ -1,6 +1,8 @@
-namespace TaskGear.Core.Model;
+using TaskGear.Core.Abstractions;
 
-public class User 
+namespace TaskGear.Core.Models;
+
+public class User: IEntity
 {
     public Guid Id { get; set; }
     public string Name { get; set; }
@@ -9,4 +11,6 @@ public class User
     public DateTimeOffset UpdatedAt { get; set; }
     public string PasswordHash { get; set; }
     public string? ImageUrl { get; set; }
+
+    public User() {}
 }
