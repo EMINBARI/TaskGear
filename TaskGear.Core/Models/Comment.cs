@@ -9,7 +9,7 @@ public class Comment: IEntity
     public User CreatedByUser { get; set; }
     
     public Guid TaskId { get; set; }
-    public Task Task { get; set; }
+    public ProjectTask Task { get; set; }
 
     public string Content { get; set; }
     public DateTimeOffset CreatedAt { get; set; }

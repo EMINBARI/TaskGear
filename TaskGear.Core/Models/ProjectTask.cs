@@ -2,7 +2,7 @@ using TaskGear.Core.Abstractions;
 
 namespace TaskGear.Core.Models;
 
-public class Task: IEntity
+public class ProjectTask: IEntity
 {
     public Guid Id { get; set; }
     public string Title { get; set; }
@@ -21,5 +21,5 @@ public class Task: IEntity
     public DateTimeOffset CreatedAt { get; set; }
     public DateTimeOffset UpdatedAt { get; set; }
 
-    public Task() {}
+    public ProjectTask() {}
 }
