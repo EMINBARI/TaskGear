@@ -6,7 +6,7 @@ public class Comment: IEntity
     public Guid Id { get; set; }
     
     public Guid CreatedBy { get; set; }
-    public ProjectMember CreatedByUser { get; set; }
+    public ProjectMember CreatedByMember { get; set; }
     
     public Guid TaskId { get; set; }
     public ProjectTask Task { get; set; }

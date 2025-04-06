@@ -12,12 +12,4 @@ public class Assignee: IEntity
     public ProjectMember ProjectMember { get; set; }
 
     public Assignee() {}
-
-    // public Assignee(Guid id, Guid taskId, Task task, Guid projectMemberId, ProjectMember projectMember){
-    //     Id = id;
-    //     TaskId = taskId;
-    //     Task = task;
-    //     ProjectMemberId = projectMemberId;
-    //     ProjectMember = projectMember; 
-    // }
 }

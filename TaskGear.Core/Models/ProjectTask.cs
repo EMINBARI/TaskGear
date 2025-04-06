@@ -15,7 +15,7 @@ public class ProjectTask: IEntity
     public TaskState TaskState { get; set; }
 
     public Guid CreatedBy { get; set; }
-    public User CreatedByUser { get; set; }
+    public ProjectMember CreatedByMember { get; set; }
 
     public DateTimeOffset ExpiresAt { get; set; }
     public DateTimeOffset CreatedAt { get; set; }
