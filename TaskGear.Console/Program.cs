@@ -8,7 +8,7 @@ class Program
 {
     static async Task Main ()
     {
-        IServiceCollection services = new ServiceNameCollection;
+        IServiceCollection services = new ServiceCollection();
     }
 
 }
