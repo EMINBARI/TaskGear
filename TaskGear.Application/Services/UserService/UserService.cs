@@ -1,9 +1,10 @@
 using TaskGear.Core.Models;
 using TaskGear.Core.Repositories;
+using TaskGear.Application.Services.Contracts;
 
-namespace TaskGear.Application.Services.Contracts;
+namespace TaskGear.Application.Services;
 
-class UserService : IUserService
+public class UserService : IUserService
 {
     IUserRepository _userRepository;
 

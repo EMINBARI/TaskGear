@@ -5,5 +5,5 @@ public class AddProjectResponse {
     public string Title { get; set; }
     public string Description { get; set; }
     public Guid CreatedBy { get; set; }
-    public AddUserResponse CreatedByUser { get; set; }
+    public UserResponse CreatedByUser { get; set; }
 }
