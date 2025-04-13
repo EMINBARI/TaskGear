@@ -31,7 +31,7 @@ namespace TaskGear.Infrastructure.Migrations
                     Name = table.Column<string>(type: "TEXT", maxLength: 60, nullable: false),
                     Email = table.Column<string>(type: "TEXT", nullable: false),
                     CreatedAt = table.Column<long>(type: "INTEGER", nullable: false),
-                    UpdatedAt = table.Column<long>(type: "INTEGER", nullable: false),
+                    UpdatedAt = table.Column<long>(type: "INTEGER", nullable: true),
                     PasswordHash = table.Column<string>(type: "TEXT", nullable: false),
                     ImageUrl = table.Column<string>(type: "TEXT", nullable: true)
                 },

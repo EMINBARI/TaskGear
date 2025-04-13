@@ -7,5 +7,5 @@ namespace TaskGear.Infrastructure.Sqlite.Repositories;
 
 public class UserRepository : GenericRepository<User>, IUserRepository
 {
-    public UserRepository(DbContext context): base(context){ }
+    public UserRepository(SqliteContext context): base(context){ }
 }

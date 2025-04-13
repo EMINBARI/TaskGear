@@ -225,7 +225,7 @@ namespace TaskGear.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<long>("UpdatedAt")
+                    b.Property<long?>("UpdatedAt")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");

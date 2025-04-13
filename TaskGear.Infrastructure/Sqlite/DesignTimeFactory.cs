@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
 
 namespace TaskGear.Infrastructure.Sqlite;
 
@@ -7,13 +8,17 @@ public class DesignTimeFactory : IDesignTimeDbContextFactory<SqliteContext>
 {
     public SqliteContext CreateDbContext(string[] args)
     {
-        var dbPath = Environment.SpecialFolder.LocalApplicationData;
-        var path = Environment.GetFolderPath(dbPath);
-        var db = Path.Join(path, "task_gear.db");
+       var optionsBuilder = new DbContextOptionsBuilder<SqliteContext>();
 
-        var builder = new DbContextOptionsBuilder<SqliteContext>();
-        builder.UseSqlite($"Data Source={db}");
+        ConfigurationBuilder builder = new ConfigurationBuilder();
+        builder.SetBasePath(Directory.GetCurrentDirectory());
+        builder.AddJsonFile("appsettings.json");
+        IConfigurationRoot config = builder.Build();
 
-        return new SqliteContext(builder.Options);
+        string? connectionString = config.GetConnectionString("DefaultConnection");
+
+        optionsBuilder.UseSqlite(connectionString);
+
+        return new SqliteContext(optionsBuilder.Options);
     }
 }

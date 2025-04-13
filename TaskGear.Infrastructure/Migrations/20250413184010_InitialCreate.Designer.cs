@@ -11,7 +11,7 @@ using TaskGear.Infrastructure.Sqlite;
 namespace TaskGear.Infrastructure.Migrations
 {
     [DbContext(typeof(SqliteContext))]
-    [Migration("20250407181649_InitialCreate")]
+    [Migration("20250413184010_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -228,7 +228,7 @@ namespace TaskGear.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<long>("UpdatedAt")
+                    b.Property<long?>("UpdatedAt")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
