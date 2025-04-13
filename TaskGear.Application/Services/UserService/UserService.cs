@@ -63,4 +63,11 @@ public class UserService : IUserService
 
         await _userRepository.DeleteAsync(user, CancellationToken.None);
     }
+
+    public async Task<IEnumerable<UserResponse>> GetUsersAsync()
+    {
+        var users = await _userRepository.GetAsync(c => true, CancellationToken.None);
+
+        return users.Select(card => new UserResponse(card));
+    }
 }
