@@ -33,7 +33,8 @@ public class UserService : IUserService
 
         if (user == null)
             throw new Exception($"Could not find user with id {request.Id}");
-
+        
+        //Field uniqueness check 
         user.Email = request.Email;
         user.Name = request.Name;
         user.ImageUrl = request.ImageUrl;

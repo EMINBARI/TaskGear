@@ -5,5 +5,5 @@ namespace TaskGear.Core.Repositories;
 
 public interface IUserRepository : IGenericRepository<User> 
 {
-    
+    // public void someMethod();
 }
