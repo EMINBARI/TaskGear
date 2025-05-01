@@ -15,7 +15,7 @@ public class User: IEntity
             if (string.IsNullOrWhiteSpace(value)){
                 throw new Exception("Name should not be null or empty.");
             }
-            email = value;
+            name = value;
         } 
     }
     public string Email { 
@@ -35,7 +35,7 @@ public class User: IEntity
             if (string.IsNullOrWhiteSpace(value)){
                 throw new Exception("Password should not be null or empty.");
             }
-            email = value;
+            passwordHash = value;
         }
     }
     public string? ImageUrl { get; set; }
