@@ -2,7 +2,7 @@ using TaskGear.Core.Models;
 
 namespace TaskGear.Core.Repositories;
 
-public interface IProjectMemberRepository:IGenericRepository<ProjectMember> 
+public interface IProjectMemberRepository: IGenericRepository<ProjectMember> 
 {
 
 }

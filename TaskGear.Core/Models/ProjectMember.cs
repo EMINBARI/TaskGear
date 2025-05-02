@@ -11,4 +11,12 @@ public class ProjectMember: IEntity
     public User User { get; set; }   
 
     public ProjectMember() {}
+
+    public ProjectMember(Guid id, Guid projectId, Project project, Guid userId, User user) {
+        Id = id;
+        ProjectId = projectId;
+        Project = project;
+        UserId = userId;
+        User = user;
+    }
 }
