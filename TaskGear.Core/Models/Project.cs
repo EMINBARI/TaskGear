@@ -1,3 +1,4 @@
+using System.Data;
 using TaskGear.Core.Abstractions;
 
 namespace TaskGear.Core.Models;
@@ -15,4 +16,22 @@ public class Project: IEntity
 
     public Project() {}
 
+    public Project(
+        Guid id, 
+        string title, 
+        string description, 
+        Guid createdBy, 
+        User createdByUser,
+        DateTimeOffset createdAt,
+        DateTimeOffset updatedAt
+    )
+    {
+        Id = id;
+        Title = title;
+        Description = description;
+        CreatedBy = createdBy;
+        CreatedByUser = createdByUser;
+        CreatedAt = createdAt;
+        UpdatedAt = updatedAt;
+    }
 }
