@@ -45,24 +45,56 @@ public class ProjectMemberService : IProjectMemberService
     }
 
 
-    public Task DeleteProjectMemberAsync(Guid userId)
+    public async Task DeleteProjectMemberAsync(Guid projectMemberId)
     {
-        throw new NotImplementedException();
+        var projectMember = await _projectMemberRepository.GetAsync(projectMemberId, CancellationToken.None);
+
+        if (projectMember == null)
+            throw new Exception($"Could not find user with id {projectMemberId}");
+
+        await _projectMemberRepository.DeleteAsync(projectMember, CancellationToken.None);
     }
 
-    public Task<ProjectMemberResponse> EditProjectMemberAsync(UpdateProjectMemberRequest request)
+    public async Task<ProjectMemberResponse> EditProjectMemberAsync(UpdateProjectMemberRequest request)
     {
-        throw new NotImplementedException();
+        var projectMember = await _projectMemberRepository.GetAsync(request.Id, CancellationToken.None);
+
+        if (projectMember == null)
+            throw new Exception($"Could not find project member with id {request.Id}");
+
+        var project = await _projectRepository.GetAsync(request.ProjectId, CancellationToken.None);
+        var user = await _userRepository.GetAsync(request.UserId, CancellationToken.None);
+        
+        if (project == null)
+            throw new Exception($"Could not find project with id {request.ProjectId}");
+        
+        if (user == null)
+            throw new Exception($"Could not find user with id {request.UserId}");
+
+        projectMember.ProjectId = request.ProjectId;
+        projectMember.UserId = request.UserId;
+        projectMember.Project = project;
+        projectMember.User = user;
+
+        await _projectMemberRepository.UpdateAsync(projectMember, CancellationToken.None);
+
+        return new ProjectMemberResponse(projectMember);
     }
 
-    public Task<ProjectMemberResponse> GetProjectMemberAsync(Guid userId)
+    public async Task<ProjectMemberResponse> GetProjectMemberAsync(Guid projectMemberId)
     {
-        throw new NotImplementedException();
+        var projectMember = await _projectMemberRepository.GetAsync(projectMemberId, CancellationToken.None);
+
+        if (projectMember == null)
+            throw new Exception($"Could not find project member with id {projectMemberId}");
+
+        return new ProjectMemberResponse(projectMember);
     }
 
-    public Task<IEnumerable<ProjectMemberResponse>> GetProjectMembersAsync()
+    public async Task<IEnumerable<ProjectMemberResponse>> GetProjectMembersAsync()
     {
-        throw new NotImplementedException();
+        var projectMembers = await _projectMemberRepository.GetAsync(c => true, CancellationToken.None);
+        return projectMembers.Select(member => new ProjectMemberResponse(member));
     }
 }
    
