@@ -6,11 +6,17 @@ public class ProjectService : IProjectService
 {
     private readonly IProjectRepository _projectRepository;
     private readonly IUserRepository _userRepository;
+    private readonly IProjectMemberRepository _projectMemberRepository;
 
-    public ProjectService(IProjectRepository projectRepository, IUserRepository userRepository)
+    public ProjectService(
+        IProjectRepository projectRepository, 
+        IUserRepository userRepository,
+        IProjectMemberRepository projectMemberRepository
+    )
     {
         _projectRepository = projectRepository;
         _userRepository = userRepository;
+        _projectMemberRepository = projectMemberRepository;
     }
 
     public async Task<ProjectResponse> AddProjectAsync(AddProjectRequest request)

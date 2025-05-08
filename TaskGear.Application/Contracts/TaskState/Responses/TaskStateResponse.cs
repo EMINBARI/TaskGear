@@ -1,6 +1,6 @@
 namespace TaskGear.Application.Services.Contracts;
 
-public class UpdateTaskStateResponse 
+public class TaskStateResponse 
 {
-    
+  
 }
