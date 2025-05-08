@@ -16,14 +16,14 @@ public class ProjectMembersController : ControllerBase
 
 
     [HttpGet("{id: guid}")]
-    public async Task<ActionResult<ProjectMemberResponse>> GetProjectMember(Guid Id)
+    public async Task<ActionResult<ProjectMemberResponse>> GetProjectMember(Guid id)
     {
-        var projectMember = await _projectMemberService.GetProjectMemberAsync(Id);
+        var projectMember = await _projectMemberService.GetProjectMemberAsync(id);
         return Ok(projectMember);
     }
 
     [HttpGet]
-    public async Task<ActionResult<ProjectMemberResponse>> GetProjectMembers()
+    public async Task<ActionResult<List<ProjectMemberResponse>>> GetProjectMembers()
     {
         var projectMembers = await _projectMemberService.GetProjectMembersAsync();
         return Ok(projectMembers);
@@ -33,7 +33,6 @@ public class ProjectMembersController : ControllerBase
     public async Task<ActionResult<ProjectMemberResponse>> CreateProjectMember([FromBody] AddProjectMemberRequest request)
     {
         var projectMember = await _projectMemberService.AddProjectMemberAsync(request);
-
         return Ok(projectMember);
     }
 

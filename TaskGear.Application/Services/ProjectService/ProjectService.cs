@@ -75,7 +75,7 @@ public class ProjectService : IProjectService
         return projects.Select(project => new ProjectResponse(project));
     }
 
-    public async Task DeleteUserAsync(Guid projectId)
+    public async Task DeleteProjectAsync(Guid projectId)
     {   
         var project = await _projectRepository.GetAsync(projectId, CancellationToken.None);
 
