@@ -12,7 +12,7 @@ public class ProjectController : ControllerBase
         _projectService = projectService;
     }
 
-    [HttpGet("{id: guid}")]
+    [HttpGet("{id:guid}")]
     public async Task<ActionResult<ProjectResponse>> GetProject(Guid id)
     {
         var project = await _projectService.GetProjectAsync(id);
@@ -40,7 +40,7 @@ public class ProjectController : ControllerBase
         return Ok(project);
     }
 
-    [HttpDelete("{id: guid}")]
+    [HttpDelete("{id:guid}")]
     public async Task<ActionResult<ProjectResponse>> DeleteProject(Guid id)
     {
         await _projectService.DeleteProjectAsync(id);
@@ -48,7 +48,4 @@ public class ProjectController : ControllerBase
             new { message = $"Project with id {id} successfully deleted" }
         );
     }
-
-
-    
 }

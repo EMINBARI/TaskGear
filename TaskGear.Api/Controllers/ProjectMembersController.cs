@@ -15,7 +15,7 @@ public class ProjectMembersController : ControllerBase
     }
 
 
-    [HttpGet("{id: guid}")]
+    [HttpGet("{id:guid}")]
     public async Task<ActionResult<ProjectMemberResponse>> GetProjectMember(Guid id)
     {
         var projectMember = await _projectMemberService.GetProjectMemberAsync(id);
@@ -43,7 +43,7 @@ public class ProjectMembersController : ControllerBase
         return Ok(projectMember);
     }
 
-    [HttpDelete("{id: guid}")]
+    [HttpDelete("{id:guid}")]
     public async Task<ActionResult> DeleteProjectMember(Guid id)
     {
         await _projectMemberService.DeleteProjectMemberAsync(id);
