@@ -19,6 +19,14 @@ builder.Services.AddDbContext<SqliteContext>(options =>
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
+builder.Services.AddScoped<IProjectService, ProjectService>();
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+
+builder.Services.AddScoped<IProjectMemberService, ProjectMemberService>();
+builder.Services.AddScoped<IProjectMemberRepository, ProjectMemberRepository>();
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

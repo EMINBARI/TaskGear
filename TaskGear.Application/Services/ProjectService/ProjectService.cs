@@ -38,6 +38,17 @@ public class ProjectService : IProjectService
 
         await _projectRepository.AddAsync(project, CancellationToken.None);
 
+        await _projectMemberRepository.AddAsync(
+            new ProjectMember(
+                id: Guid.NewGuid(), 
+                userId: request.CreatedBy, 
+                user: user, 
+                projectId: project.Id,
+                project: project
+            ),
+            CancellationToken.None
+        );
+
         return new ProjectResponse(project);
     }
 
