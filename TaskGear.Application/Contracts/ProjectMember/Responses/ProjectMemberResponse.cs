@@ -4,9 +4,9 @@ namespace TaskGear.Application.Services.Contracts;
 
 public class ProjectMemberResponse 
 {
-    Guid Id {get; set;}
-    Project Project {get; set;}
-    User User {get; set;}
+    public Guid Id {get; set;}
+    public Project Project {get; set;}
+    public User User {get; set;}
 
     public ProjectMemberResponse(ProjectMember projectMember)
     {
