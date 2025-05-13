@@ -25,6 +25,8 @@ builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 builder.Services.AddScoped<IProjectMemberService, ProjectMemberService>();
 builder.Services.AddScoped<IProjectMemberRepository, ProjectMemberRepository>();
 
+builder.Services.AddScoped<ITaskStateService, TaskStateService>();
+builder.Services.AddScoped<ITaskStateRepository, TaskStateRepository>();
 
 
 var app = builder.Build();

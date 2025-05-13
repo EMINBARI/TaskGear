@@ -2,12 +2,11 @@ using TaskGear.Application.Services.Contracts;
 using TaskGear.Core.Models;
 using TaskGear.Core.Repositories;
 
-public class TaskStateServices : ITaskStateService
+public class TaskStateService : ITaskStateService
 {
-
     private readonly ITaskStateRepository _taskStateRepository;
 
-    public TaskStateServices(ITaskStateRepository taskStateRepository)
+    public TaskStateService(ITaskStateRepository taskStateRepository)
     {
         _taskStateRepository = taskStateRepository;
     }
