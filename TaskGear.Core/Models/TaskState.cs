@@ -9,4 +9,10 @@ public class TaskState: IEntity
 
     public TaskState() {}
 
+    public TaskState(Guid id, string name)
+    {
+        Id = id;
+        Name = name;
+    }
+
 }
