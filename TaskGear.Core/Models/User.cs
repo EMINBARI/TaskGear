@@ -50,5 +50,6 @@ public class User: IEntity
         PasswordHash = passwordHash;
 
         CreatedAt = DateTimeOffset.UtcNow;
+        UpdatedAt = DateTimeOffset.UtcNow;
     }
 }

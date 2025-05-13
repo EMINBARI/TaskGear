@@ -15,11 +15,20 @@ public class ProjectMemberRepository : GenericRepository<ProjectMember>, IProjec
         _context = context;
     }
 
+    public new async Task<ProjectMember?> GetAsync(Guid entityId, CancellationToken cancellationToken)
+    {
+        return await _context.Set<ProjectMember>()
+            .Include(m => m.Project)
+            .Include(m => m.User)
+            .FirstOrDefaultAsync(x => x.Id == entityId, cancellationToken);
+
+    }
+
     public new async Task<IEnumerable<ProjectMember>> GetAsync(Expression<Func<ProjectMember, bool>> predicate, CancellationToken cancellationToken)
     {
         return await _context.Set<ProjectMember>()
-            .Include(pm => pm.Project)
-            .Include(pm => pm.User)
+            .Include(m => m.Project)
+            .Include(m => m.User)
             .Where(predicate).ToListAsync(cancellationToken);
     }
 }
