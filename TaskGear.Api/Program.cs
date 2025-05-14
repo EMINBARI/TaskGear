@@ -28,6 +28,8 @@ builder.Services.AddScoped<IProjectMemberRepository, ProjectMemberRepository>();
 builder.Services.AddScoped<ITaskStateService, TaskStateService>();
 builder.Services.AddScoped<ITaskStateRepository, TaskStateRepository>();
 
+builder.Services.AddScoped<IProjectTaskService, ProjectTaskService>();
+builder.Services.AddScoped<IProjectTaskRepository, ProjectTaskRepository>();
 
 var app = builder.Build();
 
