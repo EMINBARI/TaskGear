@@ -22,4 +22,33 @@ public class ProjectTask: IEntity
     public DateTimeOffset UpdatedAt { get; set; }
 
     public ProjectTask() {}
+
+    public ProjectTask(
+        Guid id, 
+        string title, 
+        string description, 
+        Guid projectId, 
+        Project project, 
+        Guid taskStateId, 
+        TaskState taskState, 
+        Guid createdBy, 
+        ProjectMember createdByMember, 
+        DateTimeOffset expiresAt, 
+        DateTimeOffset createdAt, 
+        DateTimeOffset updatedAt
+    )
+    {
+        Id = id;
+        Title = title;
+        Description = description;
+        ProjectId = projectId;
+        Project = project;
+        TaskStateId = taskStateId;
+        TaskState = taskState;
+        CreatedBy = createdBy;
+        CreatedByMember = createdByMember;
+        ExpiresAt = expiresAt;
+        CreatedAt = createdAt;
+        UpdatedAt = updatedAt;
+    }
 }
