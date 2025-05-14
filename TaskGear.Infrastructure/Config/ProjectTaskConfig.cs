@@ -34,11 +34,7 @@ public class ProjectTaskConfig : IEntityTypeConfiguration<ProjectTask>
         builder.HasMany<Comment>()
             .WithOne(c => c.Task)
             .HasForeignKey(c => c.TaskId);
-        
-        builder.HasMany<ConnectedTask>()
-            .WithOne(ct => ct.Task)
-            .HasForeignKey(ct => ct.TaskId);
-
+            
         builder.HasMany<Assignee>()
             .WithOne(a => a.Task)
             .HasForeignKey(a => a.TaskId);
