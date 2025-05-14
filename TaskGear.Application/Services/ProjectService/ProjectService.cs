@@ -58,16 +58,9 @@ public class ProjectService : IProjectService
 
         if (project == null)
             throw new Exception($"Could not find project with id {request.Id}");
-        
-        var user = await _userRepository.GetAsync(request.CreatedBy, CancellationToken.None);
-
-        if (user == null)
-            throw new Exception($"Could not find user with id {request.CreatedBy}");
-        
+            
         project.Title = request.Title;
         project.Description = request.Description;
-        project.CreatedBy = request.CreatedBy;
-        project.CreatedByUser = user;
         project.UpdatedAt = DateTimeOffset.Now;
 
         await _projectRepository.UpdateAsync(project, CancellationToken.None);
