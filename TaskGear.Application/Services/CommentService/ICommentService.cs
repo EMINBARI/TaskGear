@@ -1,5 +1,4 @@
-using TaskGear.Application.Contracts.Comment.Requests;
-using TaskGear.Application.Contracts.Comment.Responses;
+using TaskGear.Application.Contracts;
 
 namespace TaskGear.Application.Services.CommentService;
 
