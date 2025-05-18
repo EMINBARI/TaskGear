@@ -1,6 +1,6 @@
 using TaskGear.Core.Models;
 
-namespace TaskGear.Application.Contracts.Comment.Responses;
+namespace TaskGear.Application.Contracts;
 
 public class CommentResponse
 {
@@ -14,4 +14,15 @@ public class CommentResponse
 
     public string Content { get; set; }
     public DateTimeOffset CreatedAt { get; set; }
+
+    public CommentResponse(Comment comment)
+    {
+        Id = comment.Id;
+        CreatedBy = comment.CreatedBy;
+        CreatedByMember = comment.CreatedByMember;
+        TaskId = comment.TaskId;
+        Task = comment.Task;
+        Content = comment.Content;
+        CreatedAt = comment.CreatedAt;
+    }
 }
