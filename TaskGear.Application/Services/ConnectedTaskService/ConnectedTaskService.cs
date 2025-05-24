@@ -21,22 +21,22 @@ public class ConnectedTaskService : IConnectedTaskService
     public async Task<ConnectedTaskResponse> AddConnectedTaskAsync(AddConnectedTaskRequest request)
     {
 
-        var task1 = await _projectTaskRepository.GetAsync(request.TaskId1, CancellationToken.None);
-        var task2 = await _projectTaskRepository.GetAsync(request.TaskId2, CancellationToken.None);
+        var sourceTask = await _projectTaskRepository.GetAsync(request.SourceTask, CancellationToken.None);
+        var targetTask = await _projectTaskRepository.GetAsync(request.TargetTask, CancellationToken.None);
 
-        if(task1 == null)
-            throw new Exception($"Could not find project task with id {request.TaskId1}");
+        if(sourceTask == null)
+            throw new Exception($"Could not find project task with id {request.SourceTask}");
             
-        if(task2 == null)
-            throw new Exception($"Could not find project task with id {request.TaskId2}");
+        if(targetTask == null)
+            throw new Exception($"Could not find project task with id {request.TargetTask}");
         
         var connectedTask = new ConnectedTask
         (
             Guid.NewGuid(),
-            request.TaskId1,
-            task1,
-            request.TaskId2,
-            task2
+            request.SourceTask,
+            sourceTask,
+            request.TargetTask,
+            targetTask
         );
         
         await _connectedTaskRepository.AddAsync(connectedTask, CancellationToken.None);
@@ -57,7 +57,7 @@ public class ConnectedTaskService : IConnectedTaskService
     public async Task<IEnumerable<ConnectedTaskResponse>> GetConnectedTasksAsync(Guid taskId)
     {
         var tasks = await _connectedTaskRepository.GetAsync(
-            task => task.TaskId1 == taskId || task.TaskId2 == taskId, 
+            task => task.SourceTaskId == taskId || task.TargetTaskId == taskId, 
             CancellationToken.None);
         
         return tasks.Select(task => new ConnectedTaskResponse(task));
