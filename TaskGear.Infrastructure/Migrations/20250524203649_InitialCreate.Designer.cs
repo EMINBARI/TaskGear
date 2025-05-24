@@ -11,8 +11,8 @@ using TaskGear.Infrastructure.Sqlite;
 namespace TaskGear.Infrastructure.Migrations
 {
     [DbContext(typeof(SqliteContext))]
-    [Migration("20250514170315_UpdateConnectedTaskSchema")]
-    partial class UpdateConnectedTaskSchema
+    [Migration("20250524203649_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -75,17 +75,20 @@ namespace TaskGear.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("TaskId1")
+                    b.Property<Guid>("SourceTaskId")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("TaskId2")
+                    b.Property<Guid>("TargetTaskId")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id", "TaskId1", "TaskId2");
+                    b.Property<int>("taskRelationType")
+                        .HasColumnType("INTEGER");
 
-                    b.HasIndex("TaskId1");
+                    b.HasKey("Id", "SourceTaskId", "TargetTaskId");
 
-                    b.HasIndex("TaskId2");
+                    b.HasIndex("SourceTaskId");
+
+                    b.HasIndex("TargetTaskId");
 
                     b.ToTable("connected_tasks", (string)null);
                 });
@@ -280,21 +283,21 @@ namespace TaskGear.Infrastructure.Migrations
 
             modelBuilder.Entity("TaskGear.Core.Models.ConnectedTask", b =>
                 {
-                    b.HasOne("TaskGear.Core.Models.ProjectTask", "Task1")
+                    b.HasOne("TaskGear.Core.Models.ProjectTask", "SourceTask")
                         .WithMany()
-                        .HasForeignKey("TaskId1")
+                        .HasForeignKey("SourceTaskId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TaskGear.Core.Models.ProjectTask", "Task2")
+                    b.HasOne("TaskGear.Core.Models.ProjectTask", "TargetTask")
                         .WithMany()
-                        .HasForeignKey("TaskId2")
+                        .HasForeignKey("TargetTaskId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Task1");
+                    b.Navigation("SourceTask");
 
-                    b.Navigation("Task2");
+                    b.Navigation("TargetTask");
                 });
 
             modelBuilder.Entity("TaskGear.Core.Models.Project", b =>

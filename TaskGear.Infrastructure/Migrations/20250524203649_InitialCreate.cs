@@ -182,14 +182,22 @@ namespace TaskGear.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    TaskId = table.Column<Guid>(type: "TEXT", nullable: false)
+                    SourceTaskId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    TargetTaskId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    taskRelationType = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_connected_tasks", x => x.Id);
+                    table.PrimaryKey("PK_connected_tasks", x => new { x.Id, x.SourceTaskId, x.TargetTaskId });
                     table.ForeignKey(
-                        name: "FK_connected_tasks_tasks_TaskId",
-                        column: x => x.TaskId,
+                        name: "FK_connected_tasks_tasks_SourceTaskId",
+                        column: x => x.SourceTaskId,
+                        principalTable: "tasks",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_connected_tasks_tasks_TargetTaskId",
+                        column: x => x.TargetTaskId,
                         principalTable: "tasks",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -216,9 +224,14 @@ namespace TaskGear.Infrastructure.Migrations
                 column: "TaskId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_connected_tasks_TaskId",
+                name: "IX_connected_tasks_SourceTaskId",
                 table: "connected_tasks",
-                column: "TaskId");
+                column: "SourceTaskId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_connected_tasks_TargetTaskId",
+                table: "connected_tasks",
+                column: "TargetTaskId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_project_members_ProjectId",
